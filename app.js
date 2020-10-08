@@ -13,9 +13,9 @@ request({ url: url, json: true }, (error, response) => {    // by adding json: t
    //console.log(data.current);  // we get the current information 
 
    //console.log(response.body.current)
-
-   // console.log(response.body.current.weather[0].description + '. It is currently ' + response.body.current.temp + ' degrees out! There is a ' + response.body.current.humidity +
-   // ' % of humidity')
+   
+   console.log(response.body.current.weather[0].description + '. It is currently ' + response.body.current.temp + ' degrees out! There is a ' + response.body.current.humidity +
+               ' % of humidity')
 
    
 });
@@ -26,8 +26,10 @@ const locationURL = 'https://api.mapbox.com/geocoding/v5/mapbox.places/Los%20Ang
 
 request({url: locationURL, json: true}, (error,response) =>{
 
-   console.log('Current location is: ' + response.body.features[0].place_name + ' and the coordinates are: ' + 
-   response.body.features[0].center[0] + ' and ' + response.body.features[0].center[1])
+   const latitude = response.body.features[0].center[1];
+   const longitude = response.body.features[0].center[0];
+   const place = response.body.features[0].place_name;
 
+   console.log('Current location is: ' + place + ' and the coordinates are: ' + latitude + ' and ' + longitude);
 
 });
