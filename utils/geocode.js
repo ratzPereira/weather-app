@@ -1,5 +1,4 @@
-const request = require('request');
-const geocode = require('/utils/geocode')
+const request = require('request')
 
 //Mapbox API
 
