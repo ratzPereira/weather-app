@@ -8,17 +8,17 @@ if (address.length === 0) {
    return console.log('Please insert one valid location name')
 } else {
 
-   geocode(city, (error, data) => {
+   geocode(address, (error, { latitude, longitude, location} = {}) => {
    if(error){
        return console.log(error)  //if we had an error the function stops here because we have "return"
    }
 
-      forecast(data.latitude, data.longitude, (error, forecastData) => {
+      forecast(latitude, longitude, (error, forecastData) => {
          if(error){
             return console.log(error)  //if we had an error the function stops here because we have "return"
          }
 
-         console.log(data.location)
+         console.log(location)
          console.log(forecastData)
       })
    })
