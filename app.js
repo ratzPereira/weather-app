@@ -17,7 +17,6 @@ if (address.length === 0) {
          if(error){
             return console.log(error)  //if we had an error the function stops here because we have "return"
          }
-
          console.log(location)
          console.log(forecastData)
       })
