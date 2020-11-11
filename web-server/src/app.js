@@ -7,20 +7,15 @@ const app = express() // storing express in our variable
 const publicDirectoryPath = path.join(__dirname, '../public')
 
 
+app.set('view engine', 'hbs')  //setup handlebars.
+app.set('views', path.join(__dirname, '../views')); // adding views folder to
 app.use(express.static(publicDirectoryPath))
 
-
+//rendering the handlebar view
 app.get('', (req, res) => {
-    res.send('<h1>Weather</h1>')
+    res.render('index')
 })
 
-app.get('/help', (req, res) => {
-    res.send('Help Page')
-})
-
-app.get('/about', (req, res) => {
-    res.send('About page')
-})
 
 app.get('/weather', (req, res) => {
     res.send('Weather page')
