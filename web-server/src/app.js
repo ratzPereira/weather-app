@@ -13,12 +13,27 @@ app.use(express.static(publicDirectoryPath))
 
 //rendering the handlebar view
 app.get('', (req, res) => {
-    res.render('index')
+    res.render('index', {         //first argument is the view name and the second is the object with the values that we want
+        title: 'Weather app',
+        name: 'Ratz'
+    })
 })
 
 
-app.get('/weather', (req, res) => {
-    res.send('Weather page')
+app.get('/about', (req,res) => {
+    res.render('about', {
+        title: 'About page',
+        name: 'Ratz Pereira'
+    })
+})
+
+
+app.get('/help', (req, res) => {
+    res.render('help', {
+        name: 'Ratz Pereira',
+        email: 'ratzpereira@gmail.com',
+        phone: '913439919'
+    })
 })
 
 
