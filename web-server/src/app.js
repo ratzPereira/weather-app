@@ -1,14 +1,20 @@
 const path = require('path')
 const express = require('express')
+const hbs = require('hbs')
 
 //console.log(path.join(__dirname, '../public')) //example to check the path
 
 const app = express() // storing express in our variable 
 const publicDirectoryPath = path.join(__dirname, '../public')
+const partialsPath = path.join(__dirname, '../templates/partials')
 
 
 app.set('view engine', 'hbs')  //setup handlebars.
-app.set('views', path.join(__dirname, '../views')); // adding views folder to
+app.set('views', path.join(__dirname, '../templates/views')); // adding views folder to express
+hbs.registerPartials(partialsPath)   // the path for hbs use the partials
+
+
+//setup static directory to serve
 app.use(express.static(publicDirectoryPath))
 
 //rendering the handlebar view
