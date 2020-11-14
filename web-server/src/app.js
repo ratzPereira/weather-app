@@ -21,7 +21,7 @@ app.use(express.static(publicDirectoryPath))
 app.get('', (req, res) => {
     res.render('index', {         //first argument is the view name and the second is the object with the values that we want
         title: 'Weather app',
-        name: 'Ratz'
+        name: 'Ratz Pereira'
     })
 })
 
@@ -36,6 +36,7 @@ app.get('/about', (req,res) => {
 
 app.get('/help', (req, res) => {
     res.render('help', {
+        title: 'Help',
         name: 'Ratz Pereira',
         email: 'ratzpereira@gmail.com',
         phone: '913439919'
