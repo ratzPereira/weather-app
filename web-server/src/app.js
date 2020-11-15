@@ -44,6 +44,33 @@ app.get('/help', (req, res) => {
 })
 
 
+app.get('/weather', (req, res) => {
+    res.send({
+        forecast: 'Its raining',
+        location: 'Angra do Heroismo'
+    })
+})
+
+
+app.get('/help/*', (req, res) =>{
+    res.render('404', {
+        name: 'Ratz Pereira',
+        title: '404',
+        message:'Help article not found'
+    })
+})
+
+
+app.get('*', (req, res) => {   //   * is wildcard that express provides 
+    res.render('404', {
+        name: 'Ratz Pereira',
+        title: '404',
+        message: 'Error 404 not found'
+    })
+})
+
+
+
 //starting the server
 app.listen(3000, () => {
     console.log('Server up and running')
