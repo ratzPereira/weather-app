@@ -1,6 +1,12 @@
+const geocode = require('./utils/geocode')
+const forecast = require('./utils/forecast')
+
+
 const path = require('path')
 const express = require('express')
 const hbs = require('hbs')
+const { isBuffer } = require('util')
+const { report } = require('process')
 
 //console.log(path.join(__dirname, '../public')) //example to check the path
 
@@ -45,9 +51,41 @@ app.get('/help', (req, res) => {
 
 
 app.get('/weather', (req, res) => {
+
+    if(!req.query.address){
+        return res.send({
+            Error: 'Please insert one Address'
+        })
+    }
+
+    geocode(req.query.address, (error, { latitude, longitude, location} = {}) => {
+        if(error){
+            return res.send({ error })  //if we had an error the function stops here because we have "return"
+        }
+     
+           forecast(latitude, longitude, (error, forecastData) => {
+              if(error){
+                 return res.send({ error })  //if we had an error the function stops here because we have "return"
+              }
+              res.send({
+                  location,
+                  forecast: forecastData,
+                  address: req.query.address
+            })
+        })
+     })
+})
+
+app.get('/products', (req, res) => {
+    
+    if(!req.query.search){
+        return res.send({
+            Error: 'You must provide a search term'
+        })    
+    }
+    
     res.send({
-        forecast: 'Its raining',
-        location: 'Angra do Heroismo'
+        products: []
     })
 })
 
