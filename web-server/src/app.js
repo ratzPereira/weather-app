@@ -11,6 +11,10 @@ const { report } = require('process')
 //console.log(path.join(__dirname, '../public')) //example to check the path
 
 const app = express() // storing express in our variable 
+const port = process.env.PORT || 3000  //port for heroku and 3000 for localhost
+
+
+
 const publicDirectoryPath = path.join(__dirname, '../public')
 const partialsPath = path.join(__dirname, '../templates/partials')
 
@@ -110,6 +114,6 @@ app.get('*', (req, res) => {   //   * is wildcard that express provides
 
 
 //starting the server
-app.listen(3000, () => {
-    console.log('Server up and running')
+app.listen(port, () => {
+    console.log('Server up and running on port ' + port)
 })
