@@ -9,7 +9,10 @@ const forecast = (latitude, longitude, callback) => {
         } else if (body.message === 'Nothing to geocode') {
             callback('Unable to find location', undefined)
         } else {
-            callback(undefined, body.current.weather[0].description + '. It is currently ' + body.current.temp + ' degrees out! There is a ' + body.current.humidity + '% of humidity')
+            callback(undefined, body.current.weather[0].main  + '. It is currently ' + body.current.temp + "\n" +
+            ' degrees out! There is a ' + body.current.humidity + '% of humidity!'
+            + ' Today the temperature will be ' + body.daily[0].temp.max + ' maximum and ' + body.daily[0].temp.min + ' minimum!' 
+            + ' The wind will blow with ' + body.current.wind_speed + 'km/h!')
         }
     })
 }
